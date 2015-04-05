@@ -6,6 +6,7 @@
 
 package services;
 
+import entities.Product;
 import entities.ProductList;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -41,26 +42,43 @@ public class ProductREST {
     @Path("{id}")
     @Produces("application/json")
     public Response getById(@PathParam("id") int id){
-        return null;
+        return Response.ok(productList.get(id).toJSON()).build();
     }
     
     @POST
     @Consumes("application/json")
     public Response add(JsonObject json){
-        return null;
+        try {
+            productList.add(new Product(json));
+            return Response.ok().build();
+        } catch (Exception ex) {
+             return Response.status(500).build();
+        }
     }
     
     @PUT
     @Path("{id}")
     @Produces("application/json")
     public Response set(@PathParam("id") int id, JsonObject json){
-        return null;
+        try {
+            Product p = new Product(json);
+            productList.set(id, p);
+            return Response.ok().build();
+        } catch (Exception ex) {
+            return Response.status(500).build();
+
+        }
     }
     
     @DELETE
     @Path("{id}")
     @Produces("application/json")
     public Response delete(@PathParam("id") int id){
-        return null;
+        try {
+            productList.remove(id);
+            return Response.ok().build();
+        } catch (Exception ex) {
+            return Response.status(500).build();
+        }
     }
 }
