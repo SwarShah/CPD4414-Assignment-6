@@ -91,6 +91,20 @@ public class ProductList {
         }
     }
     
+    public void add(Product p) throws Exception {
+        int result = doUpdate(
+                "INSERT into product (productId, name, description, quantity) values (?, ?, ?, ?)",
+                String.valueOf(p.getProductId()),
+                p.getName(),
+                p.getDescription(),
+                String.valueOf(p.getQuantity()));
+        if (result > 0) {
+            productList.add(p);
+        } else {
+            throw new Exception("Error Inserting");
+        }
+    }
+    
     private String getResults(String query, String... params) {
         StringBuilder sb = new StringBuilder();
         try (Connection conn = Credentials.getConnection()) {
