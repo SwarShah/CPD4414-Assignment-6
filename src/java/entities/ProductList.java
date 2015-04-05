@@ -74,6 +74,23 @@ public class ProductList {
 
     }
     
+    public void set(int ProductId, Product Product) throws Exception {
+        int result = doUpdate("UPDATE product SET name = ?, description = ?, quantity = ? WHERE productId = ?",
+                Product.getName(),
+                Product.getDescription(),
+                String.valueOf(Product.getQuantity()),
+                String.valueOf(ProductId)
+        );
+        if (result == 1) {
+            Product original = get(ProductId);
+            original.setName(Product.getName());
+            original.setDescription(Product.getDescription());
+            original.setQuantity(Product.getQuantity());
+        } else {
+            throw new Exception("Error while updating");
+        }
+    }
+    
     private String getResults(String query, String... params) {
         StringBuilder sb = new StringBuilder();
         try (Connection conn = Credentials.getConnection()) {
