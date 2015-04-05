@@ -34,7 +34,7 @@ public class ProductREST {
     @GET
     @Produces("application/json")
     public Response getAll(){
-        return null;
+        return Response.ok(productList.toJSON()).build();
     }
     
     @GET
