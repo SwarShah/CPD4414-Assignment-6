@@ -57,6 +57,23 @@ public class ProductList {
         return result;
     }
     
+    public void remove(Product p) throws Exception {
+        remove(p.getProductId());
+    }
+
+    public void remove(int ProductId) throws Exception {
+        int result = doUpdate("DELETE FROM product WHERE productId = ?",
+                String.valueOf(ProductId));
+        if (result > 0) {
+            Product original = get(ProductId);
+            productList.remove(original);
+
+        } else {
+            throw new Exception("Delete Failed");
+        }
+
+    }
+    
     private String getResults(String query, String... params) {
         StringBuilder sb = new StringBuilder();
         try (Connection conn = Credentials.getConnection()) {
