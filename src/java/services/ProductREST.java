@@ -42,11 +42,7 @@ public class ProductREST {
     @Path("{id}")
     @Produces("application/json")
     public Response getById(@PathParam("id") int id){
-        try{
-            return Response.ok(productList.get(id).toJSON()).build();
-        } catch(Exception ex){
-            return Response.status(500).build();
-        }
+        return Response.ok(productList.get(id).toJSON()).build();
     }
     
     @POST
