@@ -14,10 +14,12 @@ import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.enterprise.context.ApplicationScoped;
 /**
  *
  * @author c0647456
  */
+@ApplicationScoped
 public class ProductList {
     private List<Product> productList;
     
