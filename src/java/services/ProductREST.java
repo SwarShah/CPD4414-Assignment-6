@@ -6,6 +6,8 @@
 
 package services;
 
+import entities.ProductList;
+import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -23,6 +25,10 @@ import javax.ws.rs.core.Response;
  */
 @Path("/product")
 public class ProductREST {
+    
+    @Inject
+    ProductList productList;
+    
     @GET
     @Produces("application/json")
     public Response getAll(){
