@@ -46,6 +46,17 @@ public class ProductList {
         return json.build();
     }
     
+    public Product get(int ProductId) {
+        Product result = null;
+        for (int i = 0; i < productList.size() && result == null; i++) {
+            Product p = productList.get(i);
+            if (p.getProductId() == ProductId) {
+                result = p;
+            }
+        }
+        return result;
+    }
+    
     private String getResults(String query, String... params) {
         StringBuilder sb = new StringBuilder();
         try (Connection conn = Credentials.getConnection()) {
