@@ -8,6 +8,7 @@ package entities;
 
 import credentials.Credentials;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @ApplicationScoped
 public class ProductList {
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();
     
     public ProductList(){
         try(Connection conn = Credentials.getConnection()){
